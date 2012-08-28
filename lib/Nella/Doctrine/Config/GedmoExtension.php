@@ -188,9 +188,9 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 		$driver = $om->getConfiguration()->getMetadataDriverImpl();
 
 		if ($driver instanceof \Doctrine\ORM\Mapping\Driver\AnnotationDriver) {
-			$driver->getPaths(array($baseDir . '/Loggable/Entity'));
+			$driver->addPaths(array($baseDir . '/Loggable/Entity'));
 		} elseif ($driver instanceof \Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver) {
-			$driver->getPaths(array($baseDir . '/Loggable/Document'));
+			$driver->addPaths(array($baseDir . '/Loggable/Document'));
 		}
 
 		if ($om instanceof \Doctrine\ORM\EntityManager || $om instanceof \Doctrine\ODM\MongoDB\DocumentManager) {
@@ -256,9 +256,9 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 		$driver = $om->getConfiguration()->getMetadataDriverImpl();
 
 		if ($driver instanceof \Doctrine\ORM\Mapping\Driver\AnnotationDriver) {
-			$driver->getPaths(array($baseDir . '/Translatable/Entity'));
+			$driver->addPaths(array($baseDir . '/Translatable/Entity'));
 		} elseif ($driver instanceof \Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver) {
-			$driver->getPaths(array($baseDir . '/Translatable/Document'));
+			$driver->addPaths(array($baseDir . '/Translatable/Document'));
 		}
 
 		if ($om instanceof \Doctrine\ORM\EntityManager || $om instanceof \Doctrine\ODM\MongoDB\DocumentManager) {
@@ -276,7 +276,7 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 		$driver = $om->getConfiguration()->getMetadataDriverImpl();
 
 		if ($driver instanceof \Doctrine\ORM\Mapping\Driver\AnnotationDriver) {
-			$driver->getPaths(array($baseDir . '/Tree/Entity'));
+			$driver->addPaths(array($baseDir . '/Tree/Entity'));
 		}
 
 		if ($om instanceof \Doctrine\ORM\EntityManager || $om instanceof \Doctrine\ODM\MongoDB\DocumentManager) {
