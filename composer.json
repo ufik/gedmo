@@ -32,6 +32,6 @@
 		"gedmo/doctrine-extensions": "2.3.*"
 	},
 	"suggest": {
-		"nella/nette-addon-doctrine": "Integrate Doctrine 2 ORM to Nette Framework"
+		"nella/doctrine": "Integrate Doctrine 2 ORM to Nette Framework"
 	}
 }

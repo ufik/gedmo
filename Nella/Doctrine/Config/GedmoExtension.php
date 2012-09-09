@@ -23,6 +23,8 @@ use Doctrine\Common\Persistence\ObjectManager,
  */
 class GedmoExtension extends \Nette\Config\CompilerExtension
 {
+	const DEFAULT_EXTENSION_NAME = 'gedmo';
+
 	/** @var array */
 	public $defaults = array(
 		'orm' => array(
@@ -301,7 +303,7 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 	 * @param \Nette\Config\Configurator
 	 * @param string
 	 */
-	public static function register(Configurator $configurator, $name = 'gedmo')
+	public static function register(Configurator $configurator, $name = self::DEFAULT_EXTENSION_NAME)
 	{
 		$class = get_called_class();
 		$configurator->onCompile[] = function (Configurator $configurator, Compiler $compiler) use ($class, $name) {
