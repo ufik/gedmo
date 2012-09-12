@@ -56,20 +56,7 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 	 */
 	public function loadConfiguration()
 	{
-		$config = $this->getConfig($this->defaults);
 		$builder = $this->getContainerBuilder();
-
-		$ref = \Nette\Reflection\ClassType::from('Gedmo\DoctrineExtensions');
-		$baseDir = pathinfo($ref->getFileName(), PATHINFO_DIRNAME);
-
-		\Gedmo\DoctrineExtensions::registerAnnotations();
-
-		if (!is_array($config['orm']['em'])) {
-			$config['orm']['em'] = is_null($config['orm']['em']) ? array() : array($config['orm']['em']);
-		}
-		if (!is_array($config['odm']['dm'])) {
-			$config['odm']['dm'] = is_null($config['odm']['dm']) ? array() : array($config['odm']['dm']);
-		}
 
 		$loggable = $builder->addDefinition($this->prefix('loggable'))
 			->setClass('Gedmo\Loggable\LoggableListener')
@@ -102,6 +89,31 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 		$uploadable = $builder->addDefinition($this->prefix('uploadable'))
 			->setClass('Gedmo\Uploadable\UploadableListener')
 			->setAutowired(FALSE);
+	}
+
+	public function beforeCompile()
+	{
+		$config = $this->getConfig($this->defaults);
+		$builder = $this->getContainerBuilder();
+
+		$ref = \Nette\Reflection\ClassType::from('Gedmo\DoctrineExtensions');
+		$baseDir = pathinfo($ref->getFileName(), PATHINFO_DIRNAME);
+
+		$loggable = $this->prefix('@loggable');
+		$sluggable = $this->prefix('@sluggable');
+		$softDeleteable = $this->prefix('@softDeleteable');
+		$sortable = $this->prefix('@sortable');
+		$timestampable = $this->prefix('@timestampable');
+		$translatable = $this->prefix('@translatable');
+		$tree = $this->prefix('@tree');
+		$uploadable = $this->prefix('@uploadable');
+
+		if (!is_array($config['orm']['em'])) {
+			$config['orm']['em'] = is_null($config['orm']['em']) ? array() : array($config['orm']['em']);
+		}
+		if (!is_array($config['odm']['dm'])) {
+			$config['odm']['dm'] = is_null($config['odm']['dm']) ? array() : array($config['odm']['dm']);
+		}
 
 		foreach ($config['orm']['em'] as $omName) {
 			$om = $builder->getDefinition($this->removeAt($omName));
@@ -166,6 +178,15 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 				$om->addSetup(get_called_class() . '::registerTree', array($om, $baseDir, $tree));
 			}
 		}
+	}
+
+	/**
+	 * @param \Nette\Utils\PhpGenerator\ClassType
+	 */
+	public function afterCompile(\Nette\Utils\PhpGenerator\ClassType $class)
+	{
+		$initialize = $class->methods['initialize'];
+		$initialize->addBody('\Gedmo\DoctrineExtensions::registerAnnotations();');
 	}
 
 	/**
