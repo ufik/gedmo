@@ -240,6 +240,10 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 	{
 		if ($om instanceof \Doctrine\ORM\EntityManager || $om instanceof \Doctrine\ODM\MongoDB\DocumentManager) {
 			$om->getEventManager()->addEventSubscriber($listener);
+			if ($om instanceof \Doctrine\ORM\EntityManager) {
+				$filter = new \Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter($om);
+				$om->getConfiguration()->addFilter('soft-deleteable', $filter);
+			}
 		}
 	}
 
