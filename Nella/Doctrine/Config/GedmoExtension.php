@@ -58,35 +58,35 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
-		$loggable = $builder->addDefinition($this->prefix('loggable'))
+		$builder->addDefinition($this->prefix('loggable'))
 			->setClass('Gedmo\Loggable\LoggableListener')
 			->setAutowired(FALSE);
 
-		$sluggable = $builder->addDefinition($this->prefix('sluggable'))
+		$builder->addDefinition($this->prefix('sluggable'))
 			->setClass('Gedmo\Sluggable\SluggableListener')
 			->setAutowired(FALSE);
 
-		$softDeleteable = $builder->addDefinition($this->prefix('softDeleteable'))
+		$builder->addDefinition($this->prefix('softDeleteable'))
 			->setClass('Gedmo\SoftDeleteable\SoftDeleteableListener')
 			->setAutowired(FALSE);
 
-		$sortable = $builder->addDefinition($this->prefix('sortable'))
+		$builder->addDefinition($this->prefix('sortable'))
 			->setClass('Gedmo\Sortable\SortableListener')
 			->setAutowired(FALSE);
 
-		$timestampable = $builder->addDefinition($this->prefix('timestampable'))
+		$builder->addDefinition($this->prefix('timestampable'))
 			->setClass('Gedmo\Timestampable\TimestampableListener')
 			->setAutowired(FALSE);
 
-		$translatable = $builder->addDefinition($this->prefix('translatable'))
+		$builder->addDefinition($this->prefix('translatable'))
 			->setClass('Gedmo\Translatable\TranslatableListener')
 			->setAutowired(FALSE);
 
-		$tree = $builder->addDefinition($this->prefix('tree'))
+		$builder->addDefinition($this->prefix('tree'))
 			->setClass('Gedmo\Tree\TreeListener')
 			->setAutowired(FALSE);
 
-		$uploadable = $builder->addDefinition($this->prefix('uploadable'))
+		$builder->addDefinition($this->prefix('uploadable'))
 			->setClass('Gedmo\Uploadable\UploadableListener')
 			->setAutowired(FALSE);
 	}
@@ -223,7 +223,6 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 
 	/**
 	 * @param \Doctrine\Common\Persistence\ObjectManager
-	 * @param string
 	 * @param \Doctrine\Common\EventSubscriber
 	 */
 	public static function registerSluggable(ObjectManager $om, EventSubscriber $listener)
@@ -235,7 +234,6 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 
 	/**
 	 * @param \Doctrine\Common\Persistence\ObjectManager
-	 * @param string
 	 * @param \Doctrine\Common\EventSubscriber
 	 */
 	public static function registerSoftDeleteable(ObjectManager $om, EventSubscriber $listener)
@@ -247,7 +245,6 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 
 	/**
 	 * @param \Doctrine\Common\Persistence\ObjectManager
-	 * @param string
 	 * @param \Doctrine\Common\EventSubscriber
 	 */
 	public static function registerSortable(ObjectManager $om, EventSubscriber $listener)
@@ -259,7 +256,6 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 
 	/**
 	 * @param \Doctrine\Common\Persistence\ObjectManager
-	 * @param string
 	 * @param EventSubscriber
 	 */
 	public static function registerTimestampable(ObjectManager $om, EventSubscriber $listener)
