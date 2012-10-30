@@ -25,6 +25,8 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 {
 	const DEFAULT_EXTENSION_NAME = 'gedmo';
 
+	const FILTER_NAME_SOFTDELETABLE = 'soft-deleteable';
+
 	/** @var array */
 	public $defaults = array(
 		'orm' => array(
@@ -242,7 +244,7 @@ class GedmoExtension extends \Nette\Config\CompilerExtension
 			$om->getEventManager()->addEventSubscriber($listener);
 			if ($om instanceof \Doctrine\ORM\EntityManager) {
 				$filter = new \Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter($om);
-				$om->getConfiguration()->addFilter('soft-deleteable', $filter);
+				$om->getConfiguration()->addFilter(static::FILTER_NAME_SOFTDELETABLE, $filter);
 			}
 		}
 	}
