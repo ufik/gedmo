@@ -1,7 +1,9 @@
 {
 	"name": "nella/gedmo",
 	"type": "nette-addon",
-	"description": "THE DEVELOPMENT OF NELLA GEDMO HAS BEEN ABANDONED",
+	"description": "Gedmo addon for Nette Framework",
+	"keywords": ["gedmo", "nette", "doctrine", "nella", "addon"],
+	"homepage": "http://nellafw.org",
 	"license": ["BSD-3-Clause", "GPL-2.0+"],
 	"authors": [
 		{
@@ -15,10 +17,21 @@
 			"homepage": "http://nella-project.org"
 		}
 	],
+	"support":{
+		"issues":"https://github.com/nella/gedmo/issues",
+		"source":"https://github.com/nella/gedmo"
+    },
 	"autoload": {
-		"files": ["index.php"]
+		"psr-0": {
+			"Nella": "./"
+		}
 	},
 	"require": {
-		"php": ">=5.3.2"
+		"php": ">=5.3.2",
+		"nette/nette": "2.0.*",
+		"gedmo/doctrine-extensions": "2.3.*"
+	},
+	"suggest": {
+		"nella/doctrine": "Integrate Doctrine 2 ORM to Nette Framework"
 	}
 }
