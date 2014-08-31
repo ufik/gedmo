@@ -1,5 +1,5 @@
 {
-	"name": "nella/gedmo",
+	"name": "webcook/gedmo",
 	"type": "nette-addon",
 	"description": "Gedmo addon for Nette Framework",
 	"keywords": ["gedmo", "nette", "doctrine", "nella", "addon"],
